@@ -40,6 +40,7 @@ def GetDepth(u, v):
 def GetCoordinate(event, u, v, flags, param):
     # 单击选取像素点
     if event == cv.EVENT_LBUTTONDOWN:
+        # cv.circle(image_rgb, (u, v), 1, (255, 255, 255), -1)
         print("u,v:",u, v)
         depth = GetDepth(u, v)
         # print(depth)
@@ -48,11 +49,12 @@ def GetCoordinate(event, u, v, flags, param):
         x = float((u - cx) * z) / fx
         y = float((v - cy) * z) / fy
         print("x:",x,"y:",y,"z:",z)
+        # ShowImage(image_rgb, "image_rgb")
 
 
 
 if __name__ == '__main__':
-    solveEuler(12, 9, 1.50)
+    # solveEuler(12, 9, 1.50)
     image_rgb = cv.imread("images/test/test_rgb.jpg")
 
     # 绑定窗口和回调函数
