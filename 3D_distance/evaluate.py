@@ -34,5 +34,7 @@ def solveEuler(width:int,height:int, len:np.float32):
         cv2.putText(frame, "Unable to Detect Chessboard", (20, frame.shape[0] - 20), cv2.FONT_HERSHEY_SIMPLEX, 1.3,
                     (0, 0, 255), 3)
         cv2.imshow('frame', frame)
+    # print(corners.reshape(-1,2))
+    np.save('corners.npy',corners.reshape(-1,2))
     cv2.waitKey()
     cv2.destroyAllWindows()

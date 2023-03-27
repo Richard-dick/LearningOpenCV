@@ -54,7 +54,7 @@ def GetCoordinate(event, u, v, flags, param):
 
 
 if __name__ == '__main__':
-    # solveEuler(12, 9, 1.50)
+    solveEuler(13, 9, 2.05)
     image_rgb = cv.imread("images/test/test_rgb.jpg")
 
     # 绑定窗口和回调函数
