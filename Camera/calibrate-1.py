@@ -4,8 +4,8 @@ import glob
 
 # code from [read://https_blog.csdn.net/?url=https%3A%2F%2Fblog.csdn.net%2Fqq_29931565%2Farticle%2Fdetails%2F119395353]
 
-params_path = "./data/205mm/"
-images_path = "./images/205mm/"
+params_path = "./data/new/"
+images_path = "./images/new/"
 
 def calibrate(width:int,height:int, len:np.float32, image_path:str, param_path:str):
     # 预处理
@@ -54,10 +54,13 @@ if __name__ == '__main__':
     # 输入标定的相关参数
     # in_max = calibrate(12, 9, 1.50, images_path, params_path)
     # in_max = calibrate(13, 9, 2.05, images_path, params_path)
-    # print(in_max)
-    ret = np.load("data/205mm/dist.npy")
+    in_max = calibrate(12, 9, 4.50, images_path, params_path)
+    print(in_max)
+    ret = np.load("data/205mm/ret.npy")
     print(ret)
-    ret = np.load("data/150mm/dist.npy")
+    ret = np.load("data/150mm/ret.npy")
+    print(ret)
+    ret = np.load("data/new/ret.npy")
     print(ret)
 
 
