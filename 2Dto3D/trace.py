@@ -23,11 +23,13 @@ class Trace():
         self.size = []
         self.color = []
         for i in range(upbound):
-            self.size.append((5*i/float(upbound)) ** 2)
+            self.size.append(((i+1)*5.0/float(upbound)) ** 3)
             if i == upbound-1:
                 self.color.append('b')
+                # self.size.append(25.0)
             else:# 会反色
                 self.color.append('r')
+                # self.size.append((5 * i / float(upbound)) ** 2)
 
 
     def get_point3d_from_point2d(self, u:int, v:int, z:np.float32):

@@ -25,13 +25,21 @@ fig.add_axes(ax)
 xs = []
 ys = []
 zs = []
-s = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9.6, 10, 11, 12, 13, 14, 15, 16, 17, 18, 25]) * 2
-# c = np.array(['b','b','b','b','b','b','b','b','b','b','b','b','b','b','b','b','b','b','r'])
-# 会反色
-c = np.array(['r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','b'])
+upbound = 15
+
+size = []
+color = []
+for i in range(upbound):
+    size.append(((i + 1) * 5.0 / float(upbound)) ** 3)
+    if i == upbound - 1:
+        color.append('b')
+        # self.size.append(25.0)
+    else:  # 会反色
+        color.append('r')
+        # self.size.append((5 * i / float(upbound)) ** 2)
 
 
-def ShowImage(img: np.ndarray, name):
+def ShowImage(name, img: np.ndarray ):
     cv2.imshow(name, img)
     cv2.waitKey()
     cv2.destroyAllWindows()
@@ -40,32 +48,28 @@ def ShowImage(img: np.ndarray, name):
 # @param: rgb图像, rgb图像上的uv坐标, 深度图像
 def get_point3d_from_point2d(u:int, v:int, z:np.float32):
     global fx, fy, cx, cy
-    # 可能还是三通道, 直接改成单通道并转置
-    # if d_image.shape == (720, 1280, 3):
-    #     d_image = cv2.cvtColor(d_image, cv2.COLOR_BGR2GRAY)
-    #     d_image = d_image.T
-    # pixel = d_image[int(u)][int(v)]
-    # depth = pixel * 7.8125
-    # z = float(depth)
     x = float((u - cx) * z) / fx
     y = float((v - cy) * z) / fy
     return x,y,z
 
+
 # 创建绘制函数
 def update_point(x, y, z):
-    global xs, ys, zs, s
+    global xs, ys, zs, size, color, upbound
     global ax
     ax.clear()
-    xs.append(x)
-    ys.append(y)
-    zs.append(z)
-    if len(xs) == 20:
+    if len(xs) == 0:
+        xs = [x] * upbound
+        ys = [y] * upbound
+        zs = [z] * upbound
+    else:
         xs = xs[1:]
         ys = ys[1:]
         zs = zs[1:]
-        ax.scatter(xs, ys, zs, s=s, c=c)
-    elif len(xs) < 20:
-        ax.scatter(xs, ys, zs, c = 'b')
+        xs.append(x)
+        ys.append(y)
+        zs.append(z)
+    ax.scatter(xs, ys, zs, s = size, c = color)
     ax.set_zlabel('Z', fontdict={'size': 10, 'color': 'gray'})
     ax.set_ylabel('Y', fontdict={'size': 10, 'color': 'gray'})
     ax.set_xlabel('X', fontdict={'size': 10, 'color': 'gray'})

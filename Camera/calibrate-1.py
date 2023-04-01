@@ -54,14 +54,16 @@ if __name__ == '__main__':
     # 输入标定的相关参数
     # in_max = calibrate(12, 9, 1.50, images_path, params_path)
     # in_max = calibrate(13, 9, 2.05, images_path, params_path)
-    in_max = calibrate(12, 9, 4.50, images_path, params_path)
-    print(in_max)
+    # in_max = calibrate(12, 9, 4.50, images_path, params_path)
+    # print(in_max)
     ret = np.load("data/205mm/ret.npy")
     print(ret)
     ret = np.load("data/150mm/ret.npy")
     print(ret)
     ret = np.load("data/new/ret.npy")
     print(ret)
+    # ret = np.load("../2Dto3D/params/ret.npy")
+    # print(ret)
 
 
 
