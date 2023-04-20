@@ -2,3 +2,5 @@
 data/
 image*/
 **cache**/
+**.png
+**.jpg
